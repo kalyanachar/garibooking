@@ -1,0 +1,88 @@
+<!--== Page Title Area Start ==-->
+<section id="page-title-area" class="section-padding overlay">
+	<div class="container">
+		<div class="row">
+			<!-- Page Title Start -->
+			<div class="col-lg-12">
+				<div class="section-title  text-center">
+					<h2>Hire Car</h2>
+					<span class="title-line"><i class="fa fa-car"></i></span>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+				</div>
+			</div>
+			<!-- Page Title End -->
+		</div>
+	</div>
+</section>
+<!--== Page Title Area End ==-->
+
+<!--== Gallery Page Content Start ==-->
+<section id="gallery-page-content" class="section-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="popular-cars-wrap">
+					<!-- Filtering Menu -->
+					<div class="popucar-menu text-center">
+						<a href="javascript:void(0)" (click)="getCarList(0)" [ngClass]="{'active':sid == '0'
+							  }">all</a>
+						<a href="javascript:void(0)" (click)="getCarList(1)" [ngClass]="{'active':sid == '1'
+					}">Car</a>
+						<a href="javascript:void(0)" (click)="getCarList(2)" [ngClass]="{'active':sid == '2'
+					}">Bus</a>
+						<!-- <a href="javascript:void(0)" data-filter=".hat">Truck</a>
+							<a href="javascript:void(0)" data-filter=".mpv">MPV</a>
+							<a href="javascript:void(0)" data-filter=".sedan">Sedan</a>
+							<a href="javascript:void(0)" data-filter=".suv">SUV</a> -->
+					</div>
+					<!-- Filtering Menu -->
+
+					<div class="row popular-car-gird" *ngIf="allCarlist.length>0">
+						<!-- Single Popular Car Start -->
+						<div class="col-lg-4 col-md-6 con suv mpv" *ngFor="let carlist of allCarlist">
+							<div class="single-popular-car">
+								<div class="p-car-thumbnails">
+									<!-- <a class="car-hover" href="assets/img/car/car-1.jpg">
+										  <img src="assets/img/car/car-1.jpg" alt="JSOFT">
+									   </a> -->
+									<!-- <a class="car-hover"> -->
+									<a>
+										<img style="width:100%; height:150px;" [src]="carlist.carimage != ''? carlist.carimage : 'assets/imgs/no-image.png'"
+										 alt="JSOFT">
+
+									</a>
+								</div>
+
+								<div class="p-car-content">
+									<h3>
+										<a href="javascript:void(0)">{{carlist.name}}</a>
+										<span class="price"><i class="fa fa-tag"></i> Rs.{{carlist.price_per_km}}/KM</span>
+									</h3>
+
+									<h5>{{carlist.brand}}</h5>
+
+									<div class="p-car-feature">
+										<a href="javascript:void(0)" *ngFor="let ofeatures of  carlist.other_feature">{{ofeatures}}</a>
+										<!-- <a href="javascript:void(0)">manual</a>
+											<a href="javascript:void(0)">AIR CONDITION</a> -->
+									</div>
+									<!-- <span *ngFor="let ofeatures of  carlist.other_feature">{{ofeatures}}</span> -->
+								</div>
+								<button class="book-now-btn" [routerLink]="['/bookcar']">Book Now</button>
+							</div>
+
+						</div>
+					</div>
+					<div class="row popular-car-gird" *ngIf="allCarlist.length==0">
+						<div class="col-lg-12 col-md-12 con suv mpv">
+							<span class="no-record-txt">No Records Found!!</span>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--== Gallery Page Content End ==-->

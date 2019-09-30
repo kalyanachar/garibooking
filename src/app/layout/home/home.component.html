@@ -1,0 +1,412 @@
+<!--== Slider Area Start ==-->
+<section id="slider-area">
+  <!--== slide Item One ==-->
+  <div class="single-slide-item overlay">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="book-a-car">
+            <form [formGroup]="carbookForm" novalidate>
+              <!--== Pick Up Location ==-->
+              <div class="pickup-location book-item">
+                <!-- <h4>PICK-UP LOCATION:</h4> -->
+                <input type="text" placeholder="Pick up location" formControlName="pickup_location"
+                  [ngClass]="displayFieldCss(carbookForm,'pickup_location')">
+              </div>
+              <!--== Pick Up Location ==-->
+              <!--== Drop Location ==-->
+              <div class="pickup-location book-item">
+                <!-- <h4>PICK-UP LOCATION:</h4> -->
+                <input type="text" placeholder="Drop location" formControlName="drop_location"
+                  [ngClass]="displayFieldCss(carbookForm,'drop_location')">
+              </div>
+              <!--== Drop Location ==-->
+
+              <!-- <mat-form-field>
+                <mat-label>Address </mat-label>
+                <input matInput
+                     matGoogleMapsAutocomplete
+                     [country]="de"
+                     (onAutocompleteSelected)="onAutocompleteSelected($event)"
+                     (onLocationSelected)="onLocationSelected($event)">
+              </mat-form-field> -->
+
+              <!--== Car Choose ==-->
+              <div class="choose-car-type book-item">
+                <!-- <h4>CHOOSE CAR TYPE:</h4> -->
+                <select class="custom-select" formControlName="car_type"
+                  [ngClass]="displayFieldCss(carbookForm,'car_type')" (change)="getCarListbyType($event)" [(ngModel)]="status">
+                  <option value ="0" [selected]="status ==0" selected>Plesae Select Car Type</option>
+                  <option value={{carType.id}} *ngFor="let carType of carTypeList"> {{carType.name}}</option>
+                </select>
+              </div>
+
+              <div class="pickup-location book-item">
+                <!-- <h4>PICK-UP LOCATION:</h4> -->
+                <!-- <input type="text" placeholder="Car Id" formControlName="car_id"
+                  [ngClass]="displayFieldCss(carbookForm,'car_id')"> -->
+                  <select class="custom-select" formControlName="car_id"
+                  [ngClass]="displayFieldCss(carbookForm,'car_id')">
+                 
+                  <option value={{carlist.id}} *ngFor="let carlist of carListname"> {{carlist.name}}</option>
+                </select>
+              </div>
+              <!--== Car Choose ==-->
+
+              <!--== Pick Up Date ==-->
+              <div class="pick-up-date book-item custom-book-item">
+                <!-- <h4>PICK-UP DATE:</h4> -->
+                <div class="pick-up-date-input">
+                  <input [owlDateTimeTrigger]="dt1" [owlDateTime]="dt1" placeholder="Pick up Date"
+                    formControlName="pickup_date" [ngClass]="displayFieldCss(carbookForm,'pickup_date')">
+                  <owl-date-time [pickerType]="'calendar'" #dt1></owl-date-time>
+                </div>
+                <div class="pick-up-time-input">
+                  <input [owlDateTimeTrigger]="dt2" [owlDateTime]="dt2" placeholder="Pick up Time"
+                    formControlName="pickup_time" [ngClass]="displayFieldCss(carbookForm,'pickup_time')">
+                  <owl-date-time [pickerType]="'timer'" #dt2></owl-date-time>
+                </div>
+
+                <!-- <div class="return-car">
+                                        <h4>Return DATE:</h4>
+                                        <input id="endDate" placeholder="Return Date" />
+                                    </div> -->
+              </div>
+              <!--== Pick Up Date ==-->
+              <!--== Pick Up Date ==-->
+              <div class="pick-up-date book-item">
+                <!-- <h4>PICK-UP DATE:</h4> -->
+                <div class="pick-up-date-input">
+                  <input [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="Drop Date"
+                    formControlName="drop_date" [ngClass]="displayFieldCss(carbookForm,'drop_date')">
+                  <owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+                </div>
+                <div class="pick-up-time-input">
+                  <input [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" placeholder="Drop Time"
+                    formControlName="drop_time" [ngClass]="displayFieldCss(carbookForm,'drop_time')">
+                  <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+                </div>
+
+                <div class="return-car">
+                  <h4 style="visibility:hidden;">Return DATE:</h4>
+                  <!--    <input id="endDate" placeholder="Return Date" /> -->
+                </div>
+              </div>
+
+              <!--== Pick Up Date ==-->
+
+              <!--== User Name ==-->
+              <div class="pickup-location book-item">
+                <!-- <h4>PICK-UP LOCATION:</h4> -->
+                <input type="text" placeholder="Your Name" formControlName="name"
+                  [ngClass]="displayFieldCss(carbookForm,'name')">
+              </div>
+              <!--== User Name ==-->
+              <!--== Email ==-->
+              <div class="pickup-location book-item">
+                <!-- <h4>PICK-UP LOCATION:</h4> -->
+                <input type="text" placeholder="Email" formControlName="email"
+                  [ngClass]="displayFieldCss(carbookForm,'email')">
+              </div>
+              <!--== Email ==-->
+              <!--== Contact Number ==-->
+              <div class="pickup-location book-item">
+                <!-- <h4>PICK-UP LOCATION:</h4> -->
+                <input type="text" placeholder="Contact Number" formControlName="phone"
+                  [ngClass]="displayFieldCss(carbookForm,'phone')">
+              </div>
+              <!--== Contact Number ==-->
+
+              <div class="book-button text-center">
+                <button class="book-now-btn" (click)="carBook()">Book Now</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <div class="col-lg-7 text-right">
+          <div class="display-table">
+            <div class="display-table-cell">
+              <div class="slider-right-text">
+                <h1>BOOK A CAR TODAY!</h1>
+                <!-- <p>FOR AS LOW AS $10 A DAY PLUS 15% DISCOUNT <br>
+                                     FOR OUR RETURNING CUSTOMERS</p> -->
+                <p>FOR AS LOW AS Rs.500 A DAY PLUS EXTRA DISCOUNT <br>
+                  FOR OUR RETURNING CUSTOMERS</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--== slide Item One ==-->
+</section>
+<!--== Slider Area End ==-->
+
+<!--== About Us Area Start ==-->
+<section id="about-area" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <!-- Section Title Start -->
+      <div class="col-lg-12">
+        <div class="section-title  text-center">
+          <h2>About us</h2>
+          <span class="title-line"><i class="fa fa-car"></i></span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <!-- Section Title End -->
+    </div>
+
+    <div class="row">
+      <!-- About Content Start -->
+      <div class="col-lg-6">
+        <div class="display-table">
+          <div class="display-table-cell">
+            <div class="about-content">
+              <p>Lorem simply dummy is a texted of the printing costed and typesetting industry. Lorem Ipsum has been
+                the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type.
+              </p>
+
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quasi aliquid debitis optio praesentium,
+                voluptate repellat accusantium deserunt eius.</p>
+              <div class="about-btn">
+                <a href="javascript:void(0)"[routerLink]="['/bookcar']">Book a Car</a>
+                <a href="javascript:void(0)" [routerLink]="['/contactus']">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- About Content End -->
+
+      <!-- About Video Start -->
+      <div class="col-lg-6">
+        <div class="about-video">
+          <iframe src="https://player.vimeo.com/video/121982328?title=0&byline=0&portrait=0"></iframe>
+        </div>
+      </div>
+      <!-- About Video End -->
+    </div>
+  </div>
+</section>
+<!--== About Us Area End ==-->
+
+<!--== Partner Area Start ==-->
+<div id="partner-area">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <div class="partner-content-wrap">
+
+          <owl-carousel #owlElement [options]="{ autoPlay:true,dots: false, nav: true, loop:true,responsive: {'0': {  items: 1, margin: 5 },
+                '480': { items: 1,  margin: 5 },
+    '640': { items: 4, margin: 5 }
+           }  }" [items]="carList"
+            [carouselClasses]="['owl-theme', 'row', 'sliding', 'categories-wrapper', 'owl-carousel','owl-prev','owl-next','banner-categories']">
+
+            <div class="item single-partner" *ngFor="let carlist of carList ; let i = index">
+
+              <div class="display-table">
+                <div class="display-table-cell custom-car-slider">
+                  <!-- <img src="assets/img/partner/partner-logo-1.png" alt="JSOFT"> -->
+                  <img [src]="carlist.carimage != ''? carlist.carimage : 'assets/imgs/no-image.png'">
+                  <h4>{{carlist.name}}</h4>
+                </div>
+              </div>
+
+              <!-- <a href="JavaScript:Void(0);" [routerLink]="['/category', category.slug]">
+                            <div class="category-icon-item">
+                                <div class="icon-box">
+                                    <div class="icon">
+                                        <img [src]="category.image_small != '' && imageBaseUrl+ category.image_small || 'assets/img/no-image.png'" alt="">
+
+                                    </div>
+                                    <h4>{{category.name}}</h4>
+                                </div>
+                            </div>
+                        </a> -->
+            </div>
+          </owl-carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--== Partner Area End ==-->
+
+<!--== Services Area Start ==-->
+<!-- <section id="service-area" class="section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-title  text-center">
+          <h2>Our Services</h2>
+          <span class="title-line"><i class="fa fa-car"></i></span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="row">
+
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-taxi"></i>
+          <h3>RENTAL CAR</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-cog"></i>
+          <h3>RENTAL Bus</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-map-marker"></i>
+          <h3>TAXI SERVICE</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-life-ring"></i>
+          <h3>RENTAL Winger</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-bath"></i>
+          <h3>RENTAL Traveller</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 text-center">
+        <div class="service-item">
+          <i class="fa fa-phone"></i>
+          <h3>AMBULANCE</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit admollitia.</p>
+        </div>
+      </div>
+   
+    </div>
+  
+  </div>
+</section> -->
+
+<section id="funfact-area" class="overlay section-padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-11 col-md-12 m-auto">
+        <div class="funfact-content-wrap">
+          <div class="row">
+            <!-- Single FunFact Start -->
+            <div class="col-lg-4 col-md-6">
+              <div class="single-funfact">
+                <div class="funfact-icon">
+                  <i class="fa fa-smile-o"></i>
+                </div>
+                <div class="funfact-content">
+                  <p><span class="counter">550</span>+</p>
+                  <h4>HAPPY CLIENTS</h4>
+                </div>
+              </div>
+            </div>
+            <!-- Single FunFact End -->
+
+            <!-- Single FunFact Start -->
+            <div class="col-lg-4 col-md-6">
+              <div class="single-funfact">
+                <div class="funfact-icon">
+                  <i class="fa fa-car"></i>
+                </div>
+                <div class="funfact-content">
+                  <p><span class="counter">250</span>+</p>
+                  <h4>CARS IN STOCK</h4>
+                </div>
+              </div>
+            </div>
+            <!-- Single FunFact End -->
+
+            <!-- Single FunFact Start -->
+            <div class="col-lg-4 col-md-6">
+              <div class="single-funfact">
+                <div class="funfact-icon">
+                  <i class="fa fa-bank"></i>
+                </div>
+                <div class="funfact-content">
+                  <p><span class="counter">50</span>+</p>
+                  <h4>office in cities</h4>
+                </div>
+              </div>
+            </div>
+            <!-- Single FunFact End -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--== Fun Fact Area End ==-->
+
+
+
+<!--== Pricing Area Start ==-->
+<section id="pricing-area" class="section-padding overlay">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-lg-12">
+        <div class="section-title  text-center">
+          <h2>Only quality for clients</h2>
+          <span class="title-line"><i class="fa fa-car"></i></span>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="row">
+
+      <div class="col-lg-4 col-md-6 text-center" *ngFor="let cartypeDetails of carTypeDetails ; let i = index">
+        <div class="single-pricing-table">
+          <h2>{{cartypeDetails.name}}</h2>
+          <!-- <h2>$ 55.99</h2>
+          <h5>PER MONTH</h5> -->
+
+          <ul class="package-list">
+            <li *ngFor="let carName of cartypeDetails.carNameList">{{carName.carname}}</li>
+            <!-- <li>Maruti Ritz</li>
+            <li>Tata Indigo</li> -->
+          </ul>
+        </div>
+        <div class="clearfix">
+          <hr>
+        </div>
+      </div>
+
+
+
+
+    </div>
+    <div class="clearfix">
+      <hr>
+    </div>
+    <div class="row"> </div>
+
+  </div>
+</section>
+<!--== Pricing Area End ==-->
